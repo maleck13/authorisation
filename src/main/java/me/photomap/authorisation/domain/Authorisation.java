@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.*;
 
 @Entity
+@Table(indexes = {@Index(name = "entity_user",columnList = "entityid,userid" )})
 public class Authorisation {
 
   @Id
@@ -12,13 +13,14 @@ public class Authorisation {
   private long id;
 
   @NotEmpty
-  @Column(name = "permission", columnDefinition="enum('write','read')")
+  @Column(name = "permission", columnDefinition="enum('write','read','read:write')")
   private String permission;
 
   @NotEmpty
   private String userid;
 
   @NotEmpty
+  @Column(name="entityid",unique = true)
   private String entityid;
 
   public long getId() {
@@ -44,6 +46,7 @@ public class Authorisation {
   public void setUserid(String userid) {
     this.userid = userid;
   }
+
 
   public String getEntityid() {
     return entityid;

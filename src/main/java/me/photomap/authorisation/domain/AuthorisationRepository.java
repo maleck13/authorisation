@@ -1,7 +1,6 @@
 package me.photomap.authorisation.domain;
 
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.Repository;
 
 import java.util.List;
 
@@ -12,4 +11,5 @@ public interface AuthorisationRepository extends CrudRepository<Authorisation,Lo
 
   List<Authorisation> findByUserid(String userId);
   Authorisation findByUseridAndEntityid(String userId, String entityId);
+  Authorisation findByEntityid(String id);
 }
